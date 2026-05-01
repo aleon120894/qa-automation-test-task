@@ -1,6 +1,6 @@
 import { APIRequestContext } from '@playwright/test';
 
-class ReqResClient {
+export class ReqResClient {
   constructor(private request: APIRequestContext) {}
 
   async login(email: string, password: string) {
