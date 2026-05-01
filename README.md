@@ -20,7 +20,8 @@
 │   ├── api/              # API test suites (ReqRes.in)
 │   ├── e2e/              # UI/End-to-End tests (HerokuApp)
 ├── .env                  # Environment variables
-└── playwright.config.ts  # Playwright configuration ```
+└── playwright.config.ts  # Playwright configuration
+ ```
 
 ## 🚀 Швидкий старт
 
