@@ -31,8 +31,9 @@
 ### Інсталяція
 ```bash
 # Клонування проекту
-git clone <your-repo-url>
+git clone git@github.com:aleon120894/qa-automation-test-task.git
 cd qa-automation-test-task
+```
 
 # Встановлення залежностей
 npm install
