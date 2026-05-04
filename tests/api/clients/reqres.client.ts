@@ -4,7 +4,7 @@ export class ReqResClient {
   constructor(private request: APIRequestContext) {}
 
   async login(email: string, password: string) {
-    return this.request.post('/api/login', { data: { email, password } });
+    return this.request.post('https://reqres.in/api/login', { data: { email, password } });
   }
 }
   

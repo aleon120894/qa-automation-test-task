@@ -1,3 +1,4 @@
+// pages/login.page.ts
 import { Page, Locator } from '@playwright/test';
 
 export class LoginPage {
@@ -16,19 +17,20 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('/login');
+    // Використовуємо повний URL, щоб на 100% виключити вплив baseURL
+    await this.page.goto('https://the-internet.herokuapp.com/login');
   }
 
   async login(username: string, password: string) {
-  await this.usernameInput.fill(username);
-  await this.passwordInput.fill(password);
+    // Клацнути по полю, щоб з'явився фокус
+    await this.usernameInput.click();
+    // Посимвольне введення з невеликою затримкою
+    await this.usernameInput.pressSequentially(username, { delay: 100 });
 
-  await this.page.evaluate(() => {
-    document.querySelector('form')?.submit();
-  });
+    await this.passwordInput.click();
+    await this.passwordInput.pressSequentially(password, { delay: 100 });
+
+    // Замість кліку по кнопці натиснемо Enter, це найнадійніший спосіб для форм
+    await this.passwordInput.press('Enter');
 }
-
-  async getFlashText() {
-    return this.flashMessage.textContent();
-  }
 }
