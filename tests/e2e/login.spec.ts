@@ -3,11 +3,11 @@ import { LoginPage } from '../../pages/login.page';
 
 test.describe('Login finctionality', () => {
   test('emergency login check', async ({ page }) => {
-    await page.goto('https://the-internet.herokuapp.com/login');
-    await page.fill('#username', 'tomsmith');
-
-    await page.fill('#password', 'SuperSecretPassword!');
-    await page.click('button[type="submit"]');
+    const loginPage = new LoginPage(page);
+    
+    await loginPage.goto();
+    await loginPage.login('tomsmith', 'SuperSecretPassword!');
+    
     await expect(page.locator('#flash')).toContainText('You logged into a secure area!');
   });
 
