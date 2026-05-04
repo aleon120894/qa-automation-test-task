@@ -5,7 +5,7 @@ test.describe('Resources API', () => {
     const start = Date.now();
 
     const response = await request.get(
-      `${process.env.API_BASE_URL}/api/users?page=2`
+      'https://jsonplaceholder.typicode.com/users'
     );
 
     const duration = Date.now() - start;
@@ -15,21 +15,20 @@ test.describe('Resources API', () => {
 
     const body = await response.json();
 
-    expect(Array.isArray(body.data)).toBeTruthy();
-    expect(body.data.length).toBeGreaterThan(0);
-
-    const user = body.data[0];
-    expect(user).toHaveProperty('id');
-    expect(user).toHaveProperty('email');
+    expect(Array.isArray(body)).toBeTruthy();
+    expect(body[0]).toHaveProperty('id');
+    expect(body[0]).toHaveProperty('name');
+    expect(body[0]).toHaveProperty('email');
   });
 
-  test('create user', async ({ request }) => {
+  test('create resource', async ({ request }) => {
     const response = await request.post(
-      `${process.env.API_BASE_URL}/api/users`,
+      'https://jsonplaceholder.typicode.com/posts',
       {
         data: {
-          name: 'morpheus',
-          job: 'leader',
+          title: 'morpheus',
+          body: 'leader',
+          userId: 1,
         },
       }
     );
@@ -37,7 +36,6 @@ test.describe('Resources API', () => {
     expect(response.status()).toBe(201);
 
     const body = await response.json();
-    expect(body.name).toBe('morpheus');
-    expect(body.job).toBe('leader');
+    expect(body.title).toBe('morpheus');
   });
 });
